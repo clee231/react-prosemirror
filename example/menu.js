@@ -12,6 +12,21 @@ import {
   wrapItem
 } from 'prosemirror-menu'
 
+import {
+  addColumnAfter,
+  addColumnBefore,
+  deleteColumn,
+  addRowAfter,
+  addRowBefore,
+  deleteRow,
+  mergeCells,
+  splitCell,
+  toggleHeaderRow,
+  toggleHeaderColumn,
+  toggleHeaderCell,
+  deleteTable
+} from 'prosemirror-tables'
+
 import { wrapInList } from 'prosemirror-schema-list'
 import { toggleMark } from 'prosemirror-commands'
 import { NodeSelection } from 'prosemirror-state'
@@ -218,6 +233,44 @@ const makeHeading = new DropdownSubmenu([1, 2, 3, 4, 5, 6].map(i => {
   label: 'Heading'
 })
 
+const insertMenu = new Dropdown([
+  insertImage,
+  insertHorizontalRule
+], {
+  label: 'Insert'
+})
+
+const typeMenu = new Dropdown([
+  makeParagraph,
+  makeCodeBlock,
+  makeHeading
+], {
+  label: 'Type...'
+})
+
+const tableMenuItem = (label, cmd) => new MenuItem({
+  label,
+  select: cmd,
+  run: cmd
+})
+
+const tableMenu = new Dropdown([
+  tableMenuItem('Insert column before', addColumnBefore),
+  tableMenuItem('Insert column after', addColumnAfter),
+  tableMenuItem('Delete column', deleteColumn),
+  tableMenuItem('Insert row before', addRowBefore),
+  tableMenuItem('Insert row after', addRowAfter),
+  tableMenuItem('Delete row', deleteRow),
+  tableMenuItem('Delete table', deleteTable),
+  tableMenuItem('Merge cells', mergeCells),
+  tableMenuItem('Split cell', splitCell),
+  tableMenuItem('Toggle header column', toggleHeaderColumn),
+  tableMenuItem('Toggle header row', toggleHeaderRow),
+  tableMenuItem('Toggle header cells', toggleHeaderCell)
+], {
+  label: 'Table'
+})
+
 export default menuBar({
   floating: false,
   content: [
@@ -230,19 +283,9 @@ export default menuBar({
       toggleLink
     ],
     [
-      new Dropdown([
-        insertImage,
-        insertHorizontalRule
-      ], {
-        label: 'Insert'
-      }),
-      new Dropdown([
-        makeParagraph,
-        makeCodeBlock,
-        makeHeading
-      ], {
-        label: 'Type...'
-      })
+      insertMenu,
+      typeMenu,
+      tableMenu
     ],
     [
       undoItem,
