@@ -37,21 +37,13 @@ const MenuBar = ({ menu, state, dispatch }) => {
   return (
     <div className={classes.bar}>
       {map(menu.marks, Button)}
-
       <Separator />
-
       {map(menu.blocks, Button)}
-
       <Separator />
-
       {map(menu.insert, Button)}
-
       <Separator />
-
       {map(menu.history, Button)}
-
       <Separator />
-
       {map(menu.table, Button)}
     </div>
   )
