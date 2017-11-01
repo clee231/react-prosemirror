@@ -1,7 +1,9 @@
 import React from 'react'
+import classnames from 'classnames'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import 'prosemirror-view/style/prosemirror.css'
+import baseClasses from 'prosemirror-view/style/prosemirror.css'
+import classes from './Editor.css'
 import MenuBar from './MenuBar'
 
 class Editor extends React.Component {
@@ -13,17 +15,20 @@ class Editor extends React.Component {
     }
   }
 
+  componentWillReceiveProps (props) {
+    // TODO: what should happen here?
+  }
+
   createEditorView = node => {
     const { state } = this.state
 
     this.view = new EditorView(node, {
       state,
-      dispatchTransaction: this.dispatchTransaction
+      dispatchTransaction: this.dispatchTransaction,
+      attributes: {
+        class: classnames(baseClasses.ProseMirror, classes.ProseMirror)
+      }
     })
-  }
-
-  componentWillReceiveProps (props) {
-    // TODO: what should happen here?
   }
 
   dispatchTransaction = transaction => {
@@ -34,7 +39,7 @@ class Editor extends React.Component {
   }
 
   render () {
-    const { menu } = this.props
+    const { options: { menu } } = this.props
     const { state } = this.state
 
     return (
@@ -46,7 +51,10 @@ class Editor extends React.Component {
             dispatch={this.dispatchTransaction}
           />
         )}
-        <div ref={this.createEditorView} />
+
+        <div
+          ref={this.createEditorView}
+        />
       </div>
     )
   }

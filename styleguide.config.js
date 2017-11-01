@@ -1,6 +1,7 @@
 module.exports = {
   title: 'react-prosemirror',
   styleguideDir: 'docs',
+  skipComponentsWithoutExample: true,
   webpackConfig: {
     module: {
       rules: [

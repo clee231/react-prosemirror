@@ -11,13 +11,16 @@
   "license": "MIT",
   "repository": "hubgit/react-prosemirror",
   "dependencies": {
+    "classnames": "latest",
     "lodash": "^4.17.4",
     "prosemirror-model": "^1.0.0",
     "prosemirror-state": "^1.0.1",
-    "prosemirror-view": "^1.0.0",
-    "classnames": "latest"
+    "prosemirror-view": "^1.0.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome": "^0.0.21",
+    "@fortawesome/fontawesome-free-solid": "^0.0.17",
+    "@fortawesome/react-fontawesome": "^0.0.12",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",

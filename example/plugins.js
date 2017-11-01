@@ -1,5 +1,4 @@
 import { history } from 'prosemirror-history'
-import { Plugin } from 'prosemirror-state'
 import { dropCursor } from 'prosemirror-dropcursor'
 import { gapCursor } from 'prosemirror-gapcursor'
 import { columnResizing, tableEditing } from 'prosemirror-tables'
@@ -14,10 +13,5 @@ export default [
   gapCursor(),
   history(),
   columnResizing(),
-  tableEditing(),
-  new Plugin({
-    props: {
-      attributes: { class: 'prosemirror-editor' }
-    }
-  })
+  tableEditing()
 ]

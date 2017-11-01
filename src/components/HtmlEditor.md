@@ -4,11 +4,8 @@ Calls to the `onChange` handler are debounced to avoid unnecessary conversion to
 
 ```js
 const options = require('../../example')
-const menu = require('../../example/menu').default(options.schema)
-
 
 require('prosemirror-tables/style/tables.css')
-require('../../example/style.css')
 require('../../styleguide/style.css')
 
 initialState = {
@@ -19,7 +16,6 @@ initialState = {
     <h2>Input</h2>
     
     <HtmlEditor 
-      menu={menu}
       options={options}
       value={state.value} 
       onChange={value => setState({ value })}

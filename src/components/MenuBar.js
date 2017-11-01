@@ -3,21 +3,26 @@ import map from 'lodash/map'
 import classnames from 'classnames'
 import classes from './MenuBar.css'
 
+const Separator = () => (
+  <span className={classes.separator} />
+)
+
 const MenuBar = ({ menu, state, dispatch }) => {
   const handle = cmd => e => {
     e.preventDefault()
     cmd(state, dispatch)
   }
 
-  const Button = ({ item, children }) => {
+  const Button = (item, key) => {
     const disabled = item.enable && !item.enable(state)
-    if (item.active && disabled) return null
+    // if (item.active && disabled) return null
 
     const active = item.active && item.active(state)
     // if (item.active && !active) return null
 
     return (
       <button
+        key={key}
         className={classnames({
           [classes.button]: true,
           [classes.active]: active
@@ -25,41 +30,29 @@ const MenuBar = ({ menu, state, dispatch }) => {
         title={item.title}
         disabled={disabled}
         onMouseDown={handle(item.run)}
-      >{children}</button>
+      >{item.content}</button>
     )
   }
 
   return (
-    <div>
-      {map(menu.marks, (item, key) => (
-        <Button item={item} key={key}>
-          {item.content}
-        </Button>
-      ))}
+    <div className={classes.bar}>
+      {map(menu.marks, Button)}
 
-      {map(menu.blocks, (item, key) => (
-        <Button item={item} key={key}>
-          {item.content}
-        </Button>
-      ))}
+      <Separator />
 
-      {map(menu.insert, (item, key) => (
-        <Button item={item} key={key}>
-          {item.content}
-        </Button>
-      ))}
+      {map(menu.blocks, Button)}
 
-      {map(menu.history, (item, key) => (
-        <Button item={item} key={key}>
-          {item.content}
-        </Button>
-      ))}
+      <Separator />
 
-      {map(menu.table, (item, key) => (
-        <Button item={item} key={key}>
-          {item.content}
-        </Button>
-      ))}
+      {map(menu.insert, Button)}
+
+      <Separator />
+
+      {map(menu.history, Button)}
+
+      <Separator />
+
+      {map(menu.table, Button)}
     </div>
   )
 }
