@@ -36,7 +36,7 @@ export default keymap({
   'Mod-Enter': insertBreak,
   'Shift-Enter': insertBreak,
   'Ctrl-Enter': insertBreak, // mac-only?
-  'Enter': splitListItem(schema.nodes.list_item),
+  // 'Enter': splitListItem(schema.nodes.list_item),
   'Mod-[': liftListItem(schema.nodes.list_item),
   'Mod-]': sinkListItem(schema.nodes.list_item),
   'Shift-Ctrl-0': setBlockType(schema.nodes.paragraph),
