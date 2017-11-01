@@ -2,8 +2,8 @@ An editor for content stored as ProseMirror JSON.
 
 ```js
 const options = require('../../example')
+const menu = require('../../example/menu').default(options.schema)
 
-require('prosemirror-menu/style/menu.css')
 require('prosemirror-tables/style/tables.css')
 require('../../example/style.css')
 require('../../styleguide/style.css')
@@ -16,6 +16,7 @@ initialState = {
     <h2>Input</h2>
     
     <Editor 
+      menu={menu}
       options={options}
       onChange={doc => setState({ doc })}
     />

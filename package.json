@@ -14,7 +14,8 @@
     "lodash": "^4.17.4",
     "prosemirror-model": "^1.0.0",
     "prosemirror-state": "^1.0.1",
-    "prosemirror-view": "^1.0.0"
+    "prosemirror-view": "^1.0.0",
+    "classnames": "latest"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
